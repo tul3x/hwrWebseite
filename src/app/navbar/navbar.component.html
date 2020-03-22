@@ -1,0 +1,21 @@
+<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" routerLink="/">App</a>
+    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse"
+      data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngClass]="{ 'show': navbarOpen }">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item" (click)="toggleNavbar()">
+          <a class="nav-link" routerLink="/" routerLinkActive="nav-link-active"
+            [routerLinkActiveOptions]="{exact: true}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item" (click)="toggleNavbar()">
+          <a class="nav-link" routerLink="/reservation" routerLinkActive="nav-link-active"
+            [routerLinkActiveOptions]="{exact: true}">Reservieren</a>
+        </li>
+      </ul>
+    </div>
+  </nav>

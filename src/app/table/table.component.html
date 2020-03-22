@@ -1,0 +1,4 @@
+<div class="table">
+    <img *ngIf="!state" [src]="image" (click)="changeState()" width="50em">
+    <img *ngIf="state" [src]="clickImage" (click)="changeState()" width="50em">
+  </div>
