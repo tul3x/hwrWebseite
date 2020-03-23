@@ -11,6 +11,14 @@ import { TableComponent } from './table/table.component';
 import{Router} from '@angular/router';
 import { TableService } from './services/table.service';
 import { HttpClientModule } from '@angular/common/http';
+import { NgZorroAntdModule, NZ_I18N, de_DE } from 'ng-zorro-antd';
+import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { registerLocaleData } from '@angular/common';
+import de from '@angular/common/locales/de';
+import { DatetimepickerComponent } from './datetimepicker/datetimepicker.component';
+
+registerLocaleData(de);
 
 @NgModule({
   declarations: [
@@ -20,13 +28,17 @@ import { HttpClientModule } from '@angular/common/http';
     NavbarComponent,
     FooterComponent,
     TableComponent,
+    DatetimepickerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NgZorroAntdModule,
+    FormsModule,
+    BrowserAnimationsModule
   ],
-  providers: [TableService],
+  providers: [TableService, { provide: NZ_I18N, useValue: de_DE }],
   bootstrap: [AppComponent]
 })
 export class AppModule { constructor(router:Router){} }

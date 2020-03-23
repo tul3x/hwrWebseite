@@ -1,0 +1,8 @@
+<nz-date-picker
+      nzShowTime
+      nzFormat="yyyy-MM-dd HH:mm:ss"
+      nzPlaceHolder={{CurrentTime}}
+      ngModel
+      (ngModelChange)="onChange($event)"
+      (nzOnOk)="onOk($event)"
+    ></nz-date-picker>
