@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TableService } from '../services/table.service';
 
 @Component({
   selector: 'app-reservation',
@@ -7,14 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationComponent implements OnInit {
 
-  tableOptions = [
-    { id: 1, seats: 4 },
-    { id: 2, seats: 6 },
-    { id: 5, seats: 4},
-    { id: 3, seats: 8 },
-  ];
+  tableOptions;
 
-  constructor() { }
+  constructor(private tableService: TableService) { 
+
+  this.tableService.getTables().subscribe((data)=>{
+    console.log(data);
+    this.tableOptions = data;
+  }, (err) => {
+    console.log(err);
+  });
+}
 
   ngOnInit(): void {
   }
