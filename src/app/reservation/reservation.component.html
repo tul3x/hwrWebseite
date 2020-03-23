@@ -11,12 +11,12 @@
 
 	<br>
 
-	<app-datetimepicker></app-datetimepicker>
+	<app-datetimepicker [CurrentTime]="starttime"></app-datetimepicker>
 
 	<br>
 
 	<div>
-		<app-table *ngFor="let t of tableOptions" [tableID]="t.id" [seatsInput]="t.chairs"></app-table>
+		<app-table *ngFor="let t of tableOptions" [tableID]="t.id" [reserved]="t.reserved" [seatsInput]="t.chairs" ></app-table>
 	</div>
 
 	<br>

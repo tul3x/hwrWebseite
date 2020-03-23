@@ -10,7 +10,10 @@ export class TableService {
   constructor(private http: HttpClient) { }
 
   getTables(){
-    console.log("Lof");
     return this.http.get("http://localhost:8080/table");
+  }
+
+  getReservations(starttime){
+    return this.http.get("http://localhost:8080/reservation?starttime=" + starttime);
   }
 }

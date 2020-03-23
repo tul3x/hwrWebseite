@@ -12,12 +12,15 @@ export class TableComponent implements OnInit {
   @Input()
   tableID: number;
   @Input()
+  reserved: boolean;
+  @Input()
   public set seatsInput(seats: number | undefined) {
     if (seats) {
       this.seats = seats;
       this.setTableOptions()
     }
   }
+  
 
   public state = false;
   public image: string | undefined;
@@ -42,21 +45,41 @@ export class TableComponent implements OnInit {
   }
 
   private setTableOptions(): void {
+    console.log(this.reserved + " | " + this.seats);
+    
     if (this.seats) {
       switch (this.seats) {
         case 4: {
-          this.image = 'assets/images/4tableGrey.svg';
-          this.clickImage = 'assets/images/4tableGreen.svg';
+          if (this.reserved){
+            this.image = 'assets/images/4tableRed.svg';
+            this.clickImage = 'assets/images/4tableRed.svg';
+          } else {
+            this.image = 'assets/images/4tableGrey.svg';
+            this.clickImage = 'assets/images/4tableGreen.svg';
+          }
+          
           break;
         }
         case 6: {
-          this.image = 'assets/images/6tableGrey.svg';
-          this.clickImage = 'assets/images/6tableGreen.svg';
+          if (this.reserved){
+            this.image = 'assets/images/6tableRed.svg';
+            this.clickImage = 'assets/images/6tableRed.svg';
+          } else {
+            this.image = 'assets/images/6tableGrey.svg';
+            this.clickImage = 'assets/images/6tableGreen.svg';
+          }
+          
           break;
         }
         case 8: {
-          this.image = 'assets/images/8tableGrey.svg';
-          this.clickImage = 'assets/images/8tableGreen.svg';
+          if (this.reserved){
+            this.image = 'assets/images/8tableRed.svg';
+            this.clickImage = 'assets/images/8tableRed.svg';
+          } else {
+            this.image = 'assets/images/8tableGrey.svg';
+            this.clickImage = 'assets/images/8tableGreen.svg';
+          }
+          
           break;
         }
       }
