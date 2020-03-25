@@ -17,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { registerLocaleData } from '@angular/common';
 import de from '@angular/common/locales/de';
 import { DatetimepickerComponent } from './datetimepicker/datetimepicker.component';
+import { ReservationModalComponent } from './reservation-modal/reservation-modal.component';
 
 registerLocaleData(de);
 
@@ -29,6 +30,7 @@ registerLocaleData(de);
     FooterComponent,
     TableComponent,
     DatetimepickerComponent,
+    ReservationModalComponent,
   ],
   imports: [
     BrowserModule,
