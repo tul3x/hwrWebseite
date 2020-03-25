@@ -24,18 +24,14 @@ export class ReservationComponent implements OnInit {
   
 
   this.tableService.getTables().subscribe((data)=>{
-    console.log(data);
     this.tableOptionsPreload = data;
     this.tableService.getReservations(this.reqStarttime).subscribe((data) => {
-      console.log(data);
       this.reservations = data;
       this.reservationsIds = this.getReservationsIds(this.reservations)
       this.tableOptionsPreload.forEach((element, i) => {
         if (this.reservationsIds.includes(element.id)){
-          console.log(element.id);
           
           this.tableOptionsPreload[i].reserved = true;
-          console.log(this.tableOptionsPreload[i]);
           
         } else {
           this.tableOptionsPreload[i].reserved = false;
@@ -43,10 +39,8 @@ export class ReservationComponent implements OnInit {
       });
       this.tableOptions = this.tableOptionsPreload;
     }, (err) => {
-      console.log(err);
     });
   }, (err) => {
-    console.log(err);
   });
 
   
@@ -56,13 +50,10 @@ export class ReservationComponent implements OnInit {
 }
 
   getReservationsIds(reservations){
-    console.log("Here");
     var resIds = [];
     reservations.forEach(element => {
-      console.log(element.tableid);
       resIds.push(element.tableid);
     });
-    console.log(resIds);
     
     return resIds;
   }
@@ -76,7 +67,6 @@ export class ReservationComponent implements OnInit {
     //month = this.monthNames[this.dateObj.getMonth()];
     var month = (dateObj.getMonth() + 1).toString();
     if (month.length == 1){
-      console.log(month);
       
       month = "0" + month;
     }

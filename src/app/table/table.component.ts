@@ -45,8 +45,6 @@ export class TableComponent implements OnInit {
   }
 
   private setTableOptions(): void {
-    console.log(this.reserved + " | " + this.seats);
-    
     if (this.seats) {
       switch (this.seats) {
         case 4: {
