@@ -11,17 +11,18 @@
 
 	<br>
 
-	<app-datetimepicker [CurrentTime]="starttime"></app-datetimepicker>
+	<app-datetimepicker [CurrentTime]="starttime" (notify)="getChildDatetime($event)"></app-datetimepicker>
 
 	<br>
 
 	<div>
-		<app-table *ngFor="let t of tableOptions" [tableID]="t.id" [reserved]="t.reserved" [seatsInput]="t.chairs">
+		<app-table *ngFor="let t of tableOptions" [tableID]="t.id" [reserved]="t.reserved" [seatsInput]="t.chairs" (click)="tableClicked(t.id)">
 		</app-table>
 	</div>
 
-
-	<app-reservation-modal></app-reservation-modal>
+	<div *ngIf="tableSelected">
+		<app-reservation-modal [resname]="resName" [resdate]="resDate" [restime]="resTime"></app-reservation-modal>
+	</div>
 
 
 	<br>

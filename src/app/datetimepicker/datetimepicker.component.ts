@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TableService } from '../services/table.service';
 import * as $ from 'jquery';
 
@@ -8,6 +8,12 @@ import * as $ from 'jquery';
   styleUrls: ['./datetimepicker.component.css']
 })
 export class DatetimepickerComponent implements OnInit {
+
+  @Output()
+  notify: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output()
+  resChange: EventEmitter<Array<String>> = new EventEmitter<Array<String>>();
 
   onChange(result: Date): void {
    // console.log('Selected Time: ', result);
@@ -54,6 +60,7 @@ export class DatetimepickerComponent implements OnInit {
     reservations.forEach(element => {
       resIds.push(element.tableid.toString());
     });
+    this.resChange.emit(resIds);
     return resIds;
   }
 
@@ -84,6 +91,7 @@ export class DatetimepickerComponent implements OnInit {
     if (seconds.length == 1){
       seconds = "0" + seconds;
     }
+    this.notify.emit(month +" " + day + " " + hour + " " + minutes);
     return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
   }
 

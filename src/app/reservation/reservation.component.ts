@@ -6,6 +6,7 @@ import { TableService } from '../services/table.service';
   templateUrl: './reservation.component.html',
   styleUrls: ['./reservation.component.css']
 })
+
 export class ReservationComponent implements OnInit {
 
   tableOptions;
@@ -14,14 +15,22 @@ export class ReservationComponent implements OnInit {
   reqStarttime;
   reservationsIds;
   tableOptionsPreload;
+  tableSelected;
+
+  tableClickCounter;
+
+  resName;
+  resDate;
+  resTime;
 
   constructor(private tableService: TableService) { 
 
+  this.tableClickCounter = new Array<{id,count}>();
+
+  this.resName = "SuperRest";
+
   this.starttime = this.getCurrentTime();
-
   this.reqStarttime = this.convertStarttime(this.starttime);
-
-  
 
   this.tableService.getTables().subscribe((data)=>{
     this.tableOptionsPreload = data;
@@ -42,12 +51,18 @@ export class ReservationComponent implements OnInit {
     });
   }, (err) => {
   });
-
-  
-
-
-
 }
+
+  getChildDatetime(datetime: string): void{
+    console.log("Received child's datetime: " + datetime);
+    var datetimeArr = datetime.split(" ");
+    this.resDate = datetimeArr[1] + "." + datetimeArr[0] + ".";
+    this.resTime = datetimeArr[2] + ":" + datetimeArr[3] + " Uhr";
+  }
+
+  getResIds(resids: Array<String>): void{
+    this.reservationsIds = resids;
+  }
 
   getReservationsIds(reservations){
     var resIds = [];
@@ -87,10 +102,32 @@ export class ReservationComponent implements OnInit {
     if (seconds.length == 1){
       seconds = "0" + seconds;
     }
+    this.resDate = `${day}.${month}.`;
+    this.resTime = `${hour}:${minutes} Uhr`;
     return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
+  }
+
+  tableClicked(tableID){
+    var tableArrIndex = this.tableClickCounter.findIndex(x => x.id == tableID);
+    if (tableArrIndex == -1){
+      if (!(this.reservationsIds.includes(tableID))){
+        this.tableClickCounter.push({id: tableID, count: 1});
+        this.tableSelected = true;
+      }
+    } else {
+      this.tableClickCounter[tableArrIndex].count += 1;
+      this.tableSelected = false;
+      this.tableClickCounter.forEach(elem => {
+        if (elem.count%2 != 0){
+          this.tableSelected = true;
+        }
+      })
+    }
   }
 
   ngOnInit(): void {
   }
+
+  
 
 }

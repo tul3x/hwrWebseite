@@ -1,11 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-reservation-modal',
   templateUrl: './reservation-modal.component.html',
   styleUrls: ['./reservation-modal.component.css']
 })
+
 export class ReservationModalComponent implements OnInit {
+
+  @Input()
+  resname;
+
+  @Input()
+  resdate;
+
+  @Input()
+  restime;
 
   constructor() { }
 
@@ -32,3 +42,4 @@ export class ReservationModalComponent implements OnInit {
   }
 
 }
+
