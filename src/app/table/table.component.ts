@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-table',
@@ -6,6 +6,9 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit {
+
+  @Output()
+  notify: EventEmitter<number> = new EventEmitter<number>();
 
   seats: number | undefined;
 
@@ -20,6 +23,7 @@ export class TableComponent implements OnInit {
       this.setTableOptions()
     }
   }
+  
   
 
   public state = false;
@@ -86,6 +90,7 @@ export class TableComponent implements OnInit {
 
   changeState() {
     this.state = !this.state;
+    this.notify.emit(this.tableID);
   };
 
 }

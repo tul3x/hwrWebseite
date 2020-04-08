@@ -11,13 +11,21 @@
 
 	<br>
 
-	<app-datetimepicker [CurrentTime]="starttime" (notify)="getChildDatetime($event)"></app-datetimepicker>
+	<app-datetimepicker [CurrentTime]="starttime" (notify)="getNewNotify($event)"></app-datetimepicker>
 
 	<br>
 
-	<div>
-		<app-table *ngFor="let t of tableOptions" [tableID]="t.id" [reserved]="t.reserved" [seatsInput]="t.chairs" (click)="tableClicked(t.id)">
+	<!-- <div>
+		<app-table *ngFor="let t of tableOptions" [(tableID)]="t.id" [(reserved)]="t.reserved" [(seatsInput)]="t.chairs"
+			(click)="tableClicked(t.id)">
 		</app-table>
+	</div> -->
+
+	<div nz-row nzType="flex" nzJustify="space-around" nzAlign="middle">
+		<div *ngFor="let t of tableOptions" nz-col nzSpan="4">
+				<app-table [(tableID)]="t.id" [(reserved)]="t.reserved"
+					[(seatsInput)]="t.chairs" (notify)="getClickedTable($event)"></app-table>
+		</div>
 	</div>
 
 	<div *ngIf="tableSelected">

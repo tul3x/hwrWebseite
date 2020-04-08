@@ -10,10 +10,7 @@ import * as $ from 'jquery';
 export class DatetimepickerComponent implements OnInit {
 
   @Output()
-  notify: EventEmitter<string> = new EventEmitter<string>();
-
-  @Output()
-  resChange: EventEmitter<Array<String>> = new EventEmitter<Array<String>>();
+  notify: EventEmitter<Object> = new EventEmitter<Object>();
 
   onChange(result: Date): void {
    // console.log('Selected Time: ', result);
@@ -28,14 +25,19 @@ export class DatetimepickerComponent implements OnInit {
       this.tableService.getReservations(starttime).subscribe((data) => {
         var reservations = data;
         var reservationsIds = this.getReservationsIds(reservations);
-        $('.table').each(function(i, currTable) {
-          var chairs = currTable.parentElement.getAttribute("ng-reflect-seats-input");
-          if (reservationsIds.includes(currTable.parentElement.getAttribute("ng-reflect-table-i-d"))){
-            $(currTable).children(":first").attr("src", "assets/images/" + chairs + "tableRed.svg");
-          } else {
-            $(currTable).children(":first").attr("src", "assets/images/" + chairs + "tableGrey.svg");
-          }
-        });
+        
+        this.notify.emit(reservationsIds);
+        // $('.table').each(function(i, currTable) {
+        //   var chairs = currTable.parentElement.getAttribute("ng-reflect-seats-input");
+        //   if (reservationsIds.includes(currTable.parentElement.getAttribute("ng-reflect-table-i-d"))){
+        //     $(currTable).children(":first").attr("src", "assets/images/" + chairs + "tableRed.svg");
+        //   } else {
+        //     $(currTable).children(":first").attr("src", "assets/images/" + chairs + "tableGrey.svg");
+        //   }
+        // });
+
+    
+
       }, (err) => {
         console.log(err);
       });
@@ -60,7 +62,6 @@ export class DatetimepickerComponent implements OnInit {
     reservations.forEach(element => {
       resIds.push(element.tableid.toString());
     });
-    this.resChange.emit(resIds);
     return resIds;
   }
 
@@ -91,7 +92,7 @@ export class DatetimepickerComponent implements OnInit {
     if (seconds.length == 1){
       seconds = "0" + seconds;
     }
-    this.notify.emit(month +" " + day + " " + hour + " " + minutes);
+    this.notify.emit(month +" " + day + " " + hour + " " + minutes + " " + seconds + " " + year);
     return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
   }
 
