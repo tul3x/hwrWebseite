@@ -29,14 +29,13 @@
 	</div>
 
 	<div *ngIf="tableSelected">
-		<app-reservation-modal [resname]="resName" [resdate]="resDate" [restime]="resTime"></app-reservation-modal>
+		<app-reservation-modal [resname]="resName" [resdate]="resDate" [restime]="resTime" [starttime]="reqStarttime" [tableids]="reservedTables"></app-reservation-modal>
 	</div>
 
 
 	<br>
 	<br>
 	<br>
-	jg
 	<p>
 		Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical
 		Latin

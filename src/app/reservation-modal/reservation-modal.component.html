@@ -1,6 +1,6 @@
 <button nz-button nzType="primary" (click)="showModal()">
     <span>Reservieren</span>
-  </button>
+</button>
   <nz-modal
     [(nzVisible)]="isVisible"
     nzTitle="Reservieren"
@@ -11,7 +11,7 @@
 
   <p>Reservierung im {{resname}} am {{resdate}} um  {{restime}}</p>
   <br>
-    <input nz-input type="text" name="name" placeholder="Name">
+    <input nz-input type="text" name="name" placeholder="Name" [(ngModel)]="username">
     <br><br>
-    <input nz-input type="text" name="mail" placeholder="E-Mail">
+    <input nz-input type="text" name="mail" placeholder="E-Mail" [(ngModel)]="usermail">
   </nz-modal>

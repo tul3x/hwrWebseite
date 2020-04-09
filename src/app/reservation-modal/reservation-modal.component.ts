@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ReservationService } from '../services/reservation.service';
 
 @Component({
   selector: 'app-reservation-modal',
@@ -17,24 +18,50 @@ export class ReservationModalComponent implements OnInit {
   @Input()
   restime;
 
-  constructor() { }
+  @Input()
+  starttime;
+
+  @Input()
+  tableids;
+
+  constructor(private reservationService: ReservationService) {  }
 
   ngOnInit(): void {
   }
 
   isVisible = false;
   isOkLoading = false;
+  username: string;
+  usermail: string;
 
   showModal(): void {
     this.isVisible = true;
   }
 
   handleOk(): void {
-    this.isOkLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isOkLoading = false;
-    }, 3000);
+    if (this.username.length != 0 && this.usermail.length != 0){
+      this.isOkLoading = true;
+
+      this.tableids.forEach(element => {
+        
+        const reservation = {
+          starttime: this.starttime,
+          name: this.username,
+          mail: this.usermail,
+          tableid: element
+        }
+  
+        this.reservationService.createReservation(reservation).subscribe((data) => {
+          console.log(data);
+          this.isOkLoading = false;
+          this.isVisible = false;
+        }, (err) => {
+
+        });
+
+      });
+      
+    }
   }
 
   handleCancel(): void {

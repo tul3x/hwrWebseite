@@ -18,6 +18,7 @@ export class ReservationComponent implements OnInit {
   tableSelected;
 
   tableClickCounter;
+  reservedTables;
 
   resName;
   resDate;
@@ -26,6 +27,7 @@ export class ReservationComponent implements OnInit {
   constructor(private tableService: TableService) { 
 
   this.tableClickCounter = new Array<{id,count}>();
+  this.reservedTables = new Array<number>();
 
   this.resName = "SuperRest";
 
@@ -131,12 +133,13 @@ export class ReservationComponent implements OnInit {
   }
 
   getClickedTable(tableID){
-    console.log("TableID:"+tableID+" type: "+ typeof tableID);
+    // console.log("TableID:"+tableID+" type: "+ typeof tableID);
     
     var tableArrIndex = this.tableClickCounter.findIndex(x => x.id == tableID);
     if (tableArrIndex == -1){
       if (!(this.reservationsIds.includes(tableID))){
         this.tableClickCounter.push({id: tableID, count: 1});
+        this.reservedTables.push(tableID);
         this.tableSelected = true;
       }
     } else {
@@ -145,6 +148,8 @@ export class ReservationComponent implements OnInit {
       this.tableClickCounter.forEach(elem => {
         if (elem.count%2 != 0){
           this.tableSelected = true;
+        } else {
+          this.reservedTables.splice(this.reservedTables.indexOf(elem.id), 1);
         }
       })
     }
