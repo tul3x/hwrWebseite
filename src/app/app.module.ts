@@ -18,6 +18,7 @@ import { registerLocaleData } from '@angular/common';
 import de from '@angular/common/locales/de';
 import { DatetimepickerComponent } from './datetimepicker/datetimepicker.component';
 import { ReservationModalComponent } from './reservation-modal/reservation-modal.component';
+import { EditReservationComponent } from './edit-reservation/edit-reservation.component';
 
 registerLocaleData(de);
 
@@ -31,6 +32,7 @@ registerLocaleData(de);
     TableComponent,
     DatetimepickerComponent,
     ReservationModalComponent,
+    EditReservationComponent,
   ],
   imports: [
     BrowserModule,

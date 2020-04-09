@@ -56,7 +56,7 @@ export class ReservationModalComponent implements OnInit {
           this.isOkLoading = false;
           this.isVisible = false;
         }, (err) => {
-
+          
         });
 
       });
