@@ -10,7 +10,7 @@ export class EditreservationService {
 
   deleteReservation(id, token){
     const headers = new HttpHeaders({'Authorization': "Bearer " + token});
-    return this.http.delete("http://berlin-fn.de:8080/reservation/"+id, {
+    return this.http.delete("https://hwrrestapi.berlin-fn.de/reservation/"+id, {
       headers: headers
     });
   }

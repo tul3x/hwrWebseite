@@ -10,10 +10,10 @@ export class TableService {
   constructor(private http: HttpClient) { }
 
   getTables(){
-    return this.http.get("http://berlin-fn.de:8080/table");
+    return this.http.get("https://hwrrestapi.berlin-fn.de/table");
   }
 
   getReservations(starttime){
-    return this.http.get("http://berlin-fn.de:8080/reservation?starttime=" + starttime);
+    return this.http.get("https://hwrrestapi.berlin-fn.de/reservation?starttime=" + starttime);
   }
 }

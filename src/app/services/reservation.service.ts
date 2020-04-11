@@ -10,7 +10,7 @@ export class ReservationService {
   constructor(private http: HttpClient) {}
 
   createReservation(reservation: Reservation): Observable<Reservation>{
-    return this.http.post<Reservation>("http://berlin-fn.de:8080/reservation", reservation);
+    return this.http.post<Reservation>("https://hwrrestapi.berlin-fn.de/reservation", reservation);
   }
 
 }
