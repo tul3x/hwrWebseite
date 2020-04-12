@@ -13,30 +13,17 @@ export class DatetimepickerComponent implements OnInit {
   notify: EventEmitter<Object> = new EventEmitter<Object>();
 
   onChange(result: Date): void {
-   // console.log('Selected Time: ', result);
   }
 
   onOk(result: Date): void {
     if (result != null){
-      console.log('onOk', result);
       var starttime =  this.convertStarttime(this.convertDateObj(result));
-      console.log(starttime);
       
       this.tableService.getReservations(starttime).subscribe((data) => {
         var reservations = data;
         var reservationsIds = this.getReservationsIds(reservations);
         
         this.notify.emit(reservationsIds);
-        // $('.table').each(function(i, currTable) {
-        //   var chairs = currTable.parentElement.getAttribute("ng-reflect-seats-input");
-        //   if (reservationsIds.includes(currTable.parentElement.getAttribute("ng-reflect-table-i-d"))){
-        //     $(currTable).children(":first").attr("src", "assets/images/" + chairs + "tableRed.svg");
-        //   } else {
-        //     $(currTable).children(":first").attr("src", "assets/images/" + chairs + "tableGrey.svg");
-        //   }
-        // });
-
-    
 
       }, (err) => {
         console.log(err);

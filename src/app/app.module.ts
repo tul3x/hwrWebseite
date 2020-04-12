@@ -19,6 +19,9 @@ import de from '@angular/common/locales/de';
 import { DatetimepickerComponent } from './datetimepicker/datetimepicker.component';
 import { ReservationModalComponent } from './reservation-modal/reservation-modal.component';
 import { EditReservationComponent } from './edit-reservation/edit-reservation.component';
+import { ChangereservationModalComponent } from './changereservation-modal/changereservation-modal.component';
+import { RecaptchaModule } from 'ng-recaptcha';
+import { ImpressumComponent } from './impressum/impressum.component';
 
 registerLocaleData(de);
 
@@ -33,6 +36,8 @@ registerLocaleData(de);
     DatetimepickerComponent,
     ReservationModalComponent,
     EditReservationComponent,
+    ChangereservationModalComponent,
+    ImpressumComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,7 +45,8 @@ registerLocaleData(de);
     HttpClientModule,
     NgZorroAntdModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RecaptchaModule
   ],
   providers: [TableService, { provide: NZ_I18N, useValue: de_DE }],
   bootstrap: [AppComponent]

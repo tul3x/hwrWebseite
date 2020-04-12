@@ -24,7 +24,7 @@ export class ReservationModalComponent implements OnInit {
   @Input()
   tableids;
 
-  constructor(private reservationService: ReservationService) {  }
+  constructor(private reservationService: ReservationService) { }
 
   ngOnInit(): void {
   }
@@ -39,20 +39,19 @@ export class ReservationModalComponent implements OnInit {
   }
 
   handleOk(): void {
-    if (this.username.length != 0 && this.usermail.length != 0){
+    if (this.username.length != 0 && this.usermail.length != 0) {
       this.isOkLoading = true;
 
       this.tableids.forEach(element => {
-        
+
         const reservation = {
           starttime: this.starttime,
           name: this.username,
           mail: this.usermail,
           tableid: element
         }
-  
+
         this.reservationService.createReservation(reservation).subscribe((data) => {
-          console.log(data);
           this.isOkLoading = false;
           this.isVisible = false;
         }, (err) => {
@@ -60,12 +59,16 @@ export class ReservationModalComponent implements OnInit {
         });
 
       });
-      
+
     }
   }
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+
+  resolved(captchaResponse: string) {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
   }
 
 }

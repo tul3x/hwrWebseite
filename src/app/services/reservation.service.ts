@@ -19,5 +19,5 @@ export class Reservation{
     starttime: string;
     name: string;
     mail: string;
-    tableid : number
+    tableid : number;
 }

@@ -10,7 +10,12 @@
     <br>
 
     Zum Aufheben der Reservierung klicken Sie auf folgenden Button:<br>
-    <button nz-button nzType="danger" (click)="deleteReservation()">Delete reservation</button>
+	<button nz-button nzType="danger" (click)="deleteReservation()">Delete reservation</button>
+
+	<div *ngIf="time != ' '">
+		<app-changereservation-modal [name]="name" [reqStarttime]="time" [resID]="resID" [token]="token" [mail]="mail"></app-changereservation-modal>
+	</div>
+	
 
 	<br>
 	<br>

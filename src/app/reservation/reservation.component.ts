@@ -57,14 +57,12 @@ export class ReservationComponent implements OnInit {
 
   getNewNotify(emitelem): void{
     if (typeof emitelem == "string"){
-      console.log("Received child's datetime: " + emitelem);
       var datetimeArr = emitelem.split(" ");
       this.resDate = datetimeArr[1] + "." + datetimeArr[0] + ".";
       this.resTime = datetimeArr[2] + ":" + datetimeArr[3] + " Uhr";
       this.reqStarttime = datetimeArr[5]+"-"+datetimeArr[0]+"-"+datetimeArr[1]+"T"+datetimeArr[2]+":"+datetimeArr[3]+":"+datetimeArr[4]+".000Z"
     } else {
       this.reservationsIds = emitelem;
-      console.log("ResIDS:" + this.reservationsIds);
 
       this.tableService.getTables().subscribe((data)=>{
         this.tableOptionsPreload = data;
@@ -132,9 +130,7 @@ export class ReservationComponent implements OnInit {
     return year + "-" + month + "-" + day + " " + hour + ":" + minutes + ":" + seconds;
   }
 
-  getClickedTable(tableID){
-    // console.log("TableID:"+tableID+" type: "+ typeof tableID);
-    
+  getClickedTable(tableID){    
     var tableArrIndex = this.tableClickCounter.findIndex(x => x.id == tableID);
     if (tableArrIndex == -1){
       if (!(this.reservationsIds.includes(tableID))){

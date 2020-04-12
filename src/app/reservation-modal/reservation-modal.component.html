@@ -14,4 +14,6 @@
     <input nz-input type="text" name="name" placeholder="Name" [(ngModel)]="username">
     <br><br>
     <input nz-input type="text" name="mail" placeholder="E-Mail" [(ngModel)]="usermail">
+    <br>
+    <re-captcha (resolved)="resolved($event)" siteKey="6LeT9ugUAAAAAAjR1Zvdlje21MmCHcQLys9_XiMO"></re-captcha>
   </nz-modal>
