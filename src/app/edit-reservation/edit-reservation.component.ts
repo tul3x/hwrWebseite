@@ -14,10 +14,12 @@ export class EditReservationComponent implements OnInit {
   resID;
   token;
   name;
-  time = " ";
+  time;
   tableId = -1;
   newTime;
   mail;
+  typeTime
+  condi = false;
 
   router;
 
@@ -29,7 +31,10 @@ export class EditReservationComponent implements OnInit {
       this.resID = params['id'];
       this.mail = params['mail'];
     });
-
+    this.typeTime = typeof this.time;
+    this.condi = this.typeTime=='undefined' ? false : true;
+    console.log(this.time);
+    
     this.router = Router;
   }
 

@@ -28,7 +28,7 @@ export class ChangereservationModalComponent implements OnInit {
   inputname;
 
   @Input()
-  reqStarttime:string;
+  reqStarttime;
 
   @Input()
   name;
@@ -42,10 +42,17 @@ export class ChangereservationModalComponent implements OnInit {
   @Input()
   mail;
 
-  starttime = " " //this.convReqToStarttime(this.reqStarttime);
+  starttime;
 
-  constructor(private tableService: TableService, private editreservation: EditreservationService, private reservationService: ReservationService) { 
-console.log(this.reqStarttime);
+  constructor(private tableService: TableService, private editreservation: EditreservationService, private reservationService: ReservationService) {  
+
+    
+  }
+
+  ngOnInit(): void {
+
+    console.log(this.reqStarttime);
+    this.starttime = this.convReqToStarttime(this.reqStarttime);
 
     this.tableClickCounter = new Array<{id,count}>();
     this.reservedTables = new Array<number>();
@@ -69,9 +76,7 @@ console.log(this.reqStarttime);
       });
     }, (err) => {
     });
-  }
 
-  ngOnInit(): void {
   }
 
   showModal(): void {
@@ -195,7 +200,7 @@ console.log(this.reqStarttime);
     if (this.reservedTables.length == 1){
         const reservation = {
           starttime: this.reqStarttime,
-          name: this.name,
+          name: isInputName ? this.inputname : this.name,
           tableid: this.reservedTables[0]
         }
         this.editreservation.updateReservation(this.resID, this.token, reservation).subscribe((response) => {
@@ -227,7 +232,7 @@ console.log(this.reqStarttime);
         } else {
           const reservation = {
             starttime: this.reqStarttime,
-            name: this.name,
+            name: isInputName ? this.inputname : this.name,
             tableid: element
           }
           this.editreservation.updateReservation(this.resID, this.token, reservation).subscribe((response) => {
