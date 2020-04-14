@@ -22,6 +22,7 @@ import { EditReservationComponent } from './edit-reservation/edit-reservation.co
 import { ChangereservationModalComponent } from './changereservation-modal/changereservation-modal.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { ImpressumComponent } from './impressum/impressum.component';
+import { ResSuccessComponent } from './res-success/res-success.component';
 
 registerLocaleData(de);
 
@@ -38,6 +39,7 @@ registerLocaleData(de);
     EditReservationComponent,
     ChangereservationModalComponent,
     ImpressumComponent,
+    ResSuccessComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,9 +11,12 @@
   html {
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   }
-  
-  body {
+    body {
       font-family: sans-serif;
+  }
+
+  .cText{
+      margin-top: 3em;
   }
   
   section {
@@ -26,16 +29,8 @@
   }
 
   .margin-400 {
+      padding-top: 100px;
       margin-bottom: 400px;
-  }
-  
-  section img {
-      height: 100%;
-      left: 0;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      width: 100%;
   }
   
   section h2 {
@@ -45,8 +40,4 @@
   section p {
       font-size: 1.2em;
       margin: 1rem 0;
-  }
-
-  .resDel{
-      margin-bottom: 2em;
   }

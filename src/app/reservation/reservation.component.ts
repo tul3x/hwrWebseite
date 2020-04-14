@@ -29,7 +29,7 @@ export class ReservationComponent implements OnInit {
   this.tableClickCounter = new Array<{id,count}>();
   this.reservedTables = new Array<number>();
 
-  this.resName = "SuperRest";
+  this.resName = "HWR Restaurant";
 
   this.starttime = this.getCurrentTime();
   this.reqStarttime = this.convertStarttime(this.starttime);

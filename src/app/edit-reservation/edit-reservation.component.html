@@ -3,19 +3,22 @@
 		alt="Landscape">
 </section>
 
-<section class="margin-400">
-    
-    <p>Edit reservation</p>
+<section class="margin-400" id="scroll">
 
-    <br>
+	<h2>Reservierung bearbeiten</h2>
 
-    Zum Aufheben der Reservierung klicken Sie auf folgenden Button:<br>
-	<button nz-button nzType="danger" (click)="deleteReservation()">Delete reservation</button>
-
-	<div *ngIf="condi">
-		<app-changereservation-modal [name]="name" [reqStarttime]="time" [resID]="resID" [token]="token" [mail]="mail"></app-changereservation-modal>
+	<br>
+	<div class="resDel">
+		Aufheben der Reservierung:<br>
+		<button nz-button nzType="danger" (click)="deleteReservation()">Delete reservation</button>
 	</div>
-	
+
+	<div class="resUpt" *ngIf="condi">
+		Zeitpunkt der Reservierung ändern: <br>
+		<app-changereservation-modal [name]="name" [reqStarttime]="time" [resID]="resID" [token]="token" [mail]="mail">
+		</app-changereservation-modal>
+	</div>
+
 
 	<br>
 	<br>
@@ -64,4 +67,3 @@
 		The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.
 	</p>
 </section>
-

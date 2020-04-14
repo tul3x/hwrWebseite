@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ReservationService } from '../services/reservation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservation-modal',
@@ -24,7 +25,7 @@ export class ReservationModalComponent implements OnInit {
   @Input()
   tableids;
 
-  constructor(private reservationService: ReservationService) { }
+  constructor(private reservationService: ReservationService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -61,6 +62,9 @@ export class ReservationModalComponent implements OnInit {
       });
 
     }
+
+    this.router.navigateByUrl('/resSuccess');
+    
   }
 
   handleCancel(): void {

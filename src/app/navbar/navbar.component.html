@@ -1,21 +1,30 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" routerLink="/">HWR Restaurant</a>
-    <button class="navbar-toggler" type="button" (click)="toggleNavbar()" data-toggle="collapse"
-      data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02" [ngClass]="{ 'show': navbarOpen }">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item" (click)="toggleNavbar()">
-          <a class="nav-link" routerLink="/" routerLinkActive="nav-link-active"
-            [routerLinkActiveOptions]="{exact: true}">Home <span class="sr-only">(current)</span></a>
+<nav id="navbartop" class="">
+
+  <div class="menu-icon">
+    <i nz-icon nzType="menu" nzTheme="outline" (click)="changeState()"></i>
+  </div>
+
+  <div class="logo">
+    <a routerLink="/" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">HWR Restaurant</a>
+  </div>
+
+  <div (window:resize)="onResize($event)">
+    <div *ngIf="toggleNav" id="menu-main" class="menu">
+      <ul>
+        <li>
+          <a routerLink="/" routerLinkActive="nav-link-active" [routerLinkActiveOptions]="{exact: true}">Home </a>
         </li>
-        <li class="nav-item" (click)="toggleNavbar()">
-          <a class="nav-link" routerLink="/reservation" routerLinkActive="nav-link-active"
+        <li>
+          <a routerLink="/reservation" routerLinkActive="nav-link-active"
             [routerLinkActiveOptions]="{exact: true}">Reservieren</a>
         </li>
       </ul>
     </div>
-  </nav>
+  </div>
+</nav>
+
+<div class="arrow" (click)="arrowclick()" id="arrowButton">
+  <div class="animated infinite bounce slow">
+      <img src="../../assets/images/arrowDown.png" alt="pfeil" width="80em">
+  </div>
+</div>

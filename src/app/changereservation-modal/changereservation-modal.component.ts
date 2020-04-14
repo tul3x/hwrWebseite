@@ -2,6 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { TableService } from '../services/table.service';
 import { EditreservationService } from '../services/editreservation.service';
 import { ReservationService } from '../services/reservation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-changereservation-modal',
@@ -44,7 +45,7 @@ export class ChangereservationModalComponent implements OnInit {
 
   starttime;
 
-  constructor(private tableService: TableService, private editreservation: EditreservationService, private reservationService: ReservationService) {  
+  constructor(private tableService: TableService, private editreservation: EditreservationService, private reservationService: ReservationService, private router: Router) {  
 
     
   }
@@ -209,6 +210,8 @@ export class ChangereservationModalComponent implements OnInit {
           console.log(err);
           
         });
+
+        this.router.navigateByUrl('/reservation');
     }   else {
       var first = true;
       var isInputName = false;
@@ -244,6 +247,8 @@ export class ChangereservationModalComponent implements OnInit {
         }
         first = false;
       });
+
+      this.router.navigateByUrl('/reservation');
       
     } 
     
